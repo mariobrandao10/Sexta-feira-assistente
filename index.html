@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<title>SEXTA-FEIRA</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#07111f;color:#eaf7ff;font-family:Arial,sans-serif}
+header{text-align:center;padding:22px;border-bottom:1px solid #1b536a}
+h1{color:#55e5ff;letter-spacing:4px}
+main{max-width:650px;margin:auto;padding:20px}
+.orb{width:160px;height:160px;margin:25px auto;border:2px solid #55e5ff;border-radius:50%;display:grid;place-items:center;box-shadow:0 0 35px #1685ad;background:radial-gradient(#17475c,#07111f);color:#55e5ff;text-align:center}
+.card{padding:18px;margin:14px 0;border:1px solid #1b536a;border-radius:14px;background:#0c1b2b}
+p{color:#a9c3d4;line-height:1.5}
+button{padding:12px;border:0;border-radius:8px;background:#55e5ff;color:#07111f;font-weight:bold;cursor:pointer}
+input{padding:12px;max-width:100%;border-radius:8px;border:1px solid #1b536a;background:#07111f;color:white}
+li{padding:8px;overflow-wrap:anywhere}
+.small{font-size:12px;color:#8ba9bc}
+</style>
+</head>
+<body>
+<header>
+  <h1>SEXTA-FEIRA</h1>
+  <div class="small">ASSISTENTE PESSOAL • VERSÃO 0.1</div>
+</header>
+<main>
+  <div class="orb"><strong>À SUA<br>DISPOSIÇÃO</strong></div>
+
+  <section class="card">
+    <h3>🎙️ Comando por voz</h3>
+    <p>A interface de voz será configurada na próxima etapa.</p>
+    <button onclick="aviso('A voz real ainda não está conectada.')">Testar interface</button>
+  </section>
+
+  <section class="card">
+    <h3>📅 Agenda e prioridades</h3>
+    <p>Área reservada para compromissos e prazos.</p>
+    <button onclick="aviso('A agenda será conectada posteriormente.')">Ver agenda</button>
+  </section>
+
+  <section class="card">
+    <h3>🏗️ Engenharia de obras</h3>
+    <p>Quantitativos, materiais, cronogramas, FVS e medições.</p>
+    <button onclick="aviso('Os recursos de engenharia serão configurados depois.')">Engenharia</button>
+  </section>
+
+  <section class="card">
+    <h3>✅ Minhas tarefas</h3>
+    <form id="form">
+      <input id="tarefa" maxlength="120" placeholder="Digite uma tarefa" required>
+      <button type="submit">Adicionar</button>
+    </form>
+    <ul id="lista"></ul>
+    <p class="small">Demonstração: as tarefas ainda não são salvas permanentemente.</p>
+  </section>
+
+  <section class="card">
+    <h3>📡 Sistema</h3>
+    <p id="status">Interface inicial carregada.</p>
+  </section>
+</main>
+<script>
+function aviso(mensagem){
+  document.getElementById('status').textContent=mensagem;
+}
+document.getElementById('form').addEventListener('submit',function(e){
+  e.preventDefault();
+  const campo=document.getElementById('tarefa');
+  const texto=campo.value.trim();
+  if(!texto)return;
+  const item=document.createElement('li');
+  const caixa=document.createElement('input');
+  caixa.type='checkbox';
+  caixa.setAttribute('aria-label','Concluir tarefa');
+  caixa.addEventListener('change',function(){
+    item.style.textDecoration=caixa.checked?'line-through':'none';
+  });
+  item.appendChild(caixa);
+  item.appendChild(document.createTextNode(' '+texto));
+  document.getElementById('lista').appendChild(item);
+  campo.value='';
+  aviso('Tarefa adicionada apenas nesta sessão.');
+});
+</script>
+</body>
+</html>
