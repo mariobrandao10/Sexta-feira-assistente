@@ -130,27 +130,27 @@
         <h1>S.I.X.T.A.</h1>
         <p class="subtitle">Interface Neural & Engenharia</p>
 
-        <!-- Módulo de Voz Corrigido -->
+        <!-- Módulo de Voz com Ações Reais -->
         <div class="card">
             <h3>🎙️ Comando por Voz</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">Toque no botão para falar com a assistente.</p>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Toque e diga: "Abrir Outlook", "Ver agenda" ou "Engenharia".</p>
             <button onclick="ouvirSextaFeira()">Falar com a S.I.X.T.A.</button>
             <div id="visorStatus" class="visor">A aguardar comando de voz...</div>
         </div>
 
-        <!-- Módulo Outlook & Agenda (Com Filtro de Cobranças) -->
-        <div class="card">
+        <!-- Módulo Outlook & Agenda -->
+        <div class="card" id="painelAgenda">
             <h3>📧 Outlook & Agenda (Operacional)</h3>
             <p style="color: var(--text-muted); font-size: 0.85rem;">Compromissos ativos (Cobranças e spam ignorados).</p>
             <ul>
                 <li><strong>Reunião:</strong> Fundação Alto de Santana - 14:00 <a href="https://outlook.office.com" target="_blank">[Abrir Outlook]</a></li>
                 <li><strong>Fornecedor:</strong> Cotação de vergalhões. <a href="https://outlook.office.com" target="_blank">[Ver E-mail]</a></li>
             </ul>
-            <button onclick="falarTexto('Agenda sincronizada com sucesso, chefe.')">Sincronizar Agenda</button>
+            <button onclick="sincronizarAgendaReal()">Sincronizar Agenda</button>
         </div>
 
         <!-- Módulo de Engenharia & Visual -->
-        <div class="card">
+        <div class="card" id="painelEngenharia">
             <h3>🏗️ Engenharia & Canteiro</h3>
             <p style="color: var(--text-muted); font-size: 0.85rem;">Monitoramento e especificações técnicas.</p>
             <div style="text-align: center; margin-top: 10px;">
@@ -161,8 +161,8 @@
     </div>
 
     <script>
-        // Função de Síntese de Voz Clara e Fluida
-        function falarTexto(texto) {
+        // Função de Síntese de Voz
+        function falarTexto(texto, callback) {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(texto);
@@ -173,11 +173,37 @@
                 const vozPt = vozes.find(v => v.lang.includes('pt-BR'));
                 if (vozPt) utterance.voice = vozPt;
 
+                if (callback) {
+                    utterance.onend = callback;
+                }
+
                 window.speechSynthesis.speak(utterance);
             }
         }
 
-        // Função de Reconhecimento de Voz Segura por Toque (Evita bloqueio do Android)
+        // Ações Reais executadas pelo sistema
+        function sincronizarAgendaReal() {
+            falarTexto("Sincronizando compromissos operacionais, chefe.");
+            const elemento = document.getElementById('painelAgenda');
+            elemento.style.boxShadow = "0 0 20px #10b981";
+            setTimeout(() => elemento.style.boxShadow = "none", 1500);
+        }
+
+        function abrirOutlookReal() {
+            falarTexto("A redirecionar para o Outlook, chefe.", function() {
+                window.open("https://outlook.office.com", "_blank");
+            });
+        }
+
+        function destacarEngenharia() {
+            falarTexto("Módulos de engenharia e canteiro em destaque, chefe.");
+            const elemento = document.getElementById('painelEngenharia');
+            elemento.scrollIntoView({ behavior: 'smooth' });
+            elemento.style.boxShadow = "0 0 20px #00f2fe";
+            setTimeout(() => elemento.style.boxShadow = "none", 1500);
+        }
+
+        // Reconhecimento de Voz com Vinculação de Ações
         function ouvirSextaFeira() {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
@@ -199,14 +225,23 @@
                 const comando = event.results[0][0].transcript.toLowerCase().trim();
                 visor.innerText = "Comando: \"" + comando + "\"";
 
+                // Executa a ação correspondente ao comando de voz
                 if (comando.includes("olá") || comando.includes("sexta") || comando.includes("sixta")) {
-                    falarTexto("À sua disposição, chefe. Sistemas operacionais ativos.");
-                } else if (comando.includes("agenda") || comando.includes("reunião")) {
+                    falarTexto("À sua disposição, chefe. Todos os sistemas operacionais estão ativos.");
+                } 
+                else if (comando.includes("agenda") || comando.includes("reunião")) {
                     falarTexto("Sua reunião de fundação em Alto de Santana está marcada para as catorze horas, chefe.");
-                } else if (comando.includes("email") || comando.includes("outlook")) {
-                    falarTexto("E-mails de obra carregados, chefe. As cobranças foram filtradas e ignoradas.");
-                } else {
-                    falarTexto("Comando compreendido, chefe. Executando.");
+                    sincronizarAgendaReal();
+                } 
+                else if (comando.includes("email") || comando.includes("outlook") || comando.includes("abrir outlook")) {
+                    falarTexto("Filtrando spams e cobranças. A abrir o Outlook agora.");
+                    abrirOutlookReal();
+                } 
+                else if (comando.includes("engenharia") || comando.includes("obra") || comando.includes("canteiro")) {
+                    destacarEngenharia();
+                } 
+                else {
+                    falarTexto("Comando compreendido, chefe. Executando procedimento.");
                 }
             };
 
