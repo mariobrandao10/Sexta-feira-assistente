@@ -3,6 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEXTA-FEIRA - Assistente Pessoal</title>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #00f2fe;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(17, 24, 39, 0.8);
+            border: 1px solid #00f2fe;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+        }
+        h1 { font-size: 1.5rem; text-align: center; margin-bottom: 5px; }
+        p.subtitle { text-align: center; color: #9ca3af; font-size: 0.9rem; margin-top: 0; }
+        .card {
+            background: #1f2937;
+            border-left: 4px solid #00f2fe;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        button {
+            background: #00f2fe;
+            color: #0b0f19;
+            border: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover { background: #00c0cb; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>SEXTA-FEIRA</h1>
+        <p class="subtitle">Assistente Pessoal • Engenharia & Produtividade</p>
+
+        <div class="card">
+            <h3>🎙️ Comando por Voz</h3>
+            <p style="color: #d1d5db; font-size: 0.9rem;">Pronto para integração com áudio no Android.</p>
+        </div>
+
+        <div class="card">
+            <h3>🏗️ Engenharia de Obras</h3>
+            <p style="color: #d1d5db; font-size: 0.9rem;">Módulos de quantitativos e materiais (Alto de Santana / NBR).</p>
+        </div>
+
+        <div class="card">
+            <h3>✅ Minhas Tarefas</h3>
+            <input type="text" id="taskInput" placeholder="Nova tarefa de obra..." style="width: 100%; padding: 8px; box-sizing: border-box; margin-top: 5px; background: #374151; border: 1px solid #4b5563; color: white; border-radius: 4px;">
+            <button onclick="alert('Tarefa anotada para sincronização!')">Adicionar Tarefa</button>
+        </div>
+    </div>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEXTA-FEIRA - Assistente de Voz</title>
     <style>
         body {
