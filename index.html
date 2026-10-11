@@ -146,7 +146,7 @@
                 <li><strong>Reunião:</strong> Fundação Alto de Santana - 14:00 <a href="https://outlook.office.com" target="_blank">[Abrir Outlook]</a></li>
                 <li><strong>Fornecedor:</strong> Cotação de vergalhões. <a href="https://outlook.office.com" target="_blank">[Ver E-mail]</a></li>
             </ul>
-            <button onclick="falarTexto('Agenda sincronizada com sucesso, Mário.')">Sincronizar Agenda</button>
+            <button onclick="falarTexto('Agenda sincronizada com sucesso, chefe.')">Sincronizar Agenda</button>
         </div>
 
         <!-- Módulo de Engenharia & Visual -->
@@ -199,14 +199,14 @@
                 const comando = event.results[0][0].transcript.toLowerCase().trim();
                 visor.innerText = "Comando: \"" + comando + "\"";
 
-                if (comando.includes("olá") || comando.includes("sexta")) {
-                    falarTexto("À sua disposição, Mário. Sistemas operacionais ativos.");
+                if (comando.includes("olá") || comando.includes("sexta") || comando.includes("sixta")) {
+                    falarTexto("À sua disposição, chefe. Sistemas operacionais ativos.");
                 } else if (comando.includes("agenda") || comando.includes("reunião")) {
-                    falarTexto("Sua reunião de fundação em Alto de Santana está marcada para as catorze horas.");
+                    falarTexto("Sua reunião de fundação em Alto de Santana está marcada para as catorze horas, chefe.");
                 } else if (comando.includes("email") || comando.includes("outlook")) {
-                    falarTexto("E-mails de obra carregados. As cobranças foram filtradas e ignoradas.");
+                    falarTexto("E-mails de obra carregados, chefe. As cobranças foram filtradas e ignoradas.");
                 } else {
-                    falarTexto("Comando compreendido, Mário. Executando.");
+                    falarTexto("Comando compreendido, chefe. Executando.");
                 }
             };
 
