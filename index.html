@@ -1,4 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEXTA-FEIRA - Assistente de Engenharia</title>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #00f2fe;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 650px;
+            width: 100%;
+            background: rgba(17, 24, 39, 0.9);
+            border: 1px solid #00f2fe;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+        }
+        h1 { font-size: 1.6rem; text-align: center; margin-bottom: 5px; }
+        p.subtitle { text-align: center; color: #9ca3af; font-size: 0.9rem; margin-top: 0; }
+        .card {
+            background: #1f2937;
+            border-left: 4px solid #00f2fe;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 8px;
+            background: #374151;
+            border: 1px solid #4b5563;
+            color: white;
+            border-radius: 4px;
+        }
+        button {
+            background: #00f2fe;
+            color: #0b0f19;
+            border: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover { background: #00c0cb; }
+        .result { margin-top: 10px; color: #10b981; font-weight: bold; }
+    </style>
+</head>
+<body>
 
+    <div class="container">
+        <h1>SEXTA-FEIRA</h1>
+        <p class="subtitle">Módulo de Engenharia Civil & Gestão</p>
+
+        <div class="card">
+            <h3>🏗️ Cálculo Rápido de Alvenaria (Blocos)</h3>
+            <label style="font-size: 0.85rem; color: #d1d5db;">Área da parede (m²):</label>
+            <input type="number" id="areaParede" placeholder="Ex: 15">
+            <button onclick="calcularBlocos()">Calcular Quantidade de Blocos</button>
+            <div id="resultadoBlocos" class="result"></div>
+        </div>
+
+        <div class
+          
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
