@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEXTA-FEIRA - Assistente de Engenharia</title>
+    <title>SEXTA-FEIRA - Assistente de Voz</title>
     <style>
         body {
             background-color: #0b0f19;
@@ -33,132 +33,93 @@
             margin: 15px 0;
             border-radius: 4px;
         }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            margin-top: 8px;
-            background: #374151;
-            border: 1px solid #4b5563;
-            color: white;
-            border-radius: 4px;
-        }
         button {
             background: #00f2fe;
             color: #0b0f19;
             border: none;
-            padding: 10px 15px;
+            padding: 12px 15px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
             width: 100%;
             margin-top: 10px;
+            font-size: 1rem;
         }
         button:hover { background: #00c0cb; }
-        .result { margin-top: 10px; color: #10b981; font-weight: bold; }
+        .status-box { margin-top: 10px; color: #10b981; font-weight: bold; font-size: 0.95rem; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>SEXTA-FEIRA</h1>
-        <p class="subtitle">Módulo de Engenharia Civil & Gestão</p>
+        <p class="subtitle">Assistente de Voz & Engenharia</p>
 
         <div class="card">
-            <h3>🏗️ Cálculo Rápido de Alvenaria (Blocos)</h3>
-            <label style="font-size: 0.85rem; color: #d1d5db;">Área da parede (m²):</label>
-            <input type="number" id="areaParede" placeholder="Ex: 15">
-            <button onclick="calcularBlocos()">Calcular Quantidade de Blocos</button>
-            <div id="resultadoBlocos" class="result"></div>
+            <h3>🎙️ Interação por Voz</h3>
+            <p style="color: #d1d5db; font-size: 0.9rem;">Clique no botão abaixo e fale com a SEXTA-FEIRA (ex: "Olá", "Status da obra", "Calcular blocos").</p>
+            <button onclick="ouvirComando()">Falar com a SEXTA-FEIRA</button>
+            <div id="statusVoz" class="status-box">A aguardar comando...</div>
         </div>
+    </div>
 
-        <div class
-          
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#07111f">
-<title>SEXTA-FEIRA</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;background:#07111f;color:#eaf7ff;font-family:Arial,sans-serif}
-header{text-align:center;padding:22px;border-bottom:1px solid #1b536a}
-h1{color:#55e5ff;letter-spacing:4px}
-main{max-width:650px;margin:auto;padding:20px}
-.orb{width:160px;height:160px;margin:25px auto;border:2px solid #55e5ff;border-radius:50%;display:grid;place-items:center;box-shadow:0 0 35px #1685ad;background:radial-gradient(#17475c,#07111f);color:#55e5ff;text-align:center}
-.card{padding:18px;margin:14px 0;border:1px solid #1b536a;border-radius:14px;background:#0c1b2b}
-p{color:#a9c3d4;line-height:1.5}
-button{padding:12px;border:0;border-radius:8px;background:#55e5ff;color:#07111f;font-weight:bold;cursor:pointer}
-input{padding:12px;max-width:100%;border-radius:8px;border:1px solid #1b536a;background:#07111f;color:white}
-li{padding:8px;overflow-wrap:anywhere}
-.small{font-size:12px;color:#8ba9bc}
-</style>
-</head>
-<body>
-<header>
-  <h1>SEXTA-FEIRA</h1>
-  <div class="small">ASSISTENTE PESSOAL • VERSÃO 0.1</div>
-</header>
-<main>
-  <div class="orb"><strong>À SUA<br>DISPOSIÇÃO</strong></div>
+    <script>
+        // Função para a SEXTA-FEIRA falar com você
+        function falar(texto) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(texto);
+                utterance.lang = 'pt-BR';
+                utterance.rate = 1.0; // Velocidade normal
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("O seu navegador não suporta síntese de voz.");
+            }
+        }
 
-  <section class="card">
-    <h3>🎙️ Comando por voz</h3>
-    <p>A interface de voz será configurada na próxima etapa.</p>
-    <button onclick="aviso('A voz real ainda não está conectada.')">Testar interface</button>
-  </section>
+        // Função para ouvir a sua voz (Reconhecimento de Fala)
+        function ouvirComando() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert("O seu navegador não suporta reconhecimento de voz. Utilize o Google Chrome.");
+                return;
+            }
 
-  <section class="card">
-    <h3>📅 Agenda e prioridades</h3>
-    <p>Área reservada para compromissos e prazos.</p>
-    <button onclick="aviso('A agenda será conectada posteriormente.')">Ver agenda</button>
-  </section>
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'pt-BR';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
 
-  <section class="card">
-    <h3>🏗️ Engenharia de obras</h3>
-    <p>Quantitativos, materiais, cronogramas, FVS e medições.</p>
-    <button onclick="aviso('Os recursos de engenharia serão configurados depois.')">Engenharia</button>
-  </section>
+            const statusEl = document.getElementById('statusVoz');
+            statusEl.innerText = "A ouvir...";
 
-  <section class="card">
-    <h3>✅ Minhas tarefas</h3>
-    <form id="form">
-      <input id="tarefa" maxlength="120" placeholder="Digite uma tarefa" required>
-      <button type="submit">Adicionar</button>
-    </form>
-    <ul id="lista"></ul>
-    <p class="small">Demonstração: as tarefas ainda não são salvas permanentemente.</p>
-  </section>
+            recognition.start();
 
-  <section class="card">
-    <h3>📡 Sistema</h3>
-    <p id="status">Interface inicial carregada.</p>
-  </section>
-</main>
-<script>
-function aviso(mensagem){
-  document.getElementById('status').textContent=mensagem;
-}
-document.getElementById('form').addEventListener('submit',function(e){
-  e.preventDefault();
-  const campo=document.getElementById('tarefa');
-  const texto=campo.value.trim();
-  if(!texto)return;
-  const item=document.createElement('li');
-  const caixa=document.createElement('input');
-  caixa.type='checkbox';
-  caixa.setAttribute('aria-label','Concluir tarefa');
-  caixa.addEventListener('change',function(){
-    item.style.textDecoration=caixa.checked?'line-through':'none';
-  });
-  item.appendChild(caixa);
-  item.appendChild(document.createTextNode(' '+texto));
-  document.getElementById('lista').appendChild(item);
-  campo.value='';
-  aviso('Tarefa adicionada apenas nesta sessão.');
-});
-</script>
+            recognition.onresult = function(event) {
+                const comando = event.results[0][0].transcript.toLowerCase();
+                statusEl.innerText = "Disse: \"" + comando + "\"";
+                
+                // Respostas automáticas da SEXTA-FEIRA baseadas no que disser
+                if (comando.includes("olá") || comando.includes("oi")) {
+                    const resposta = "Olá, Mário. A SEXTA-FEIRA está à sua disposição.";
+                    falar(resposta);
+                } else if (comando.includes("status") || comando.includes("obra")) {
+                    const resposta = "Os módulos de engenharia em Alto de Santana estão prontos para consulta.";
+                    falar(resposta);
+                } else {
+                    const resposta = "Comando recebido: " + comando + ". Sistema operacional a funcionar perfeitamente.";
+                    falar(resposta);
+                }
+            };
+
+            recognition.onerror = function(event) {
+                statusEl.innerText = "Erro ao reconhecer voz. Tente novamente.";
+            };
+
+            recognition.onspeechend = function() {
+                recognition.stop();
+            };
+        }
+    </script>
+
 </body>
 </html>
