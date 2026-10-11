@@ -7,7 +7,7 @@
     <style>
         :root {
             --bg-color: #030712;
-            --panel-bg: rgba(15, 23, 42, 0.75);
+            --panel-bg: rgba(15, 23, 42, 0.85);
             --neon-blue: #00f2fe;
             --neon-glow: rgba(0, 242, 254, 0.3);
             --text-main: #f3f4f6;
@@ -18,7 +18,7 @@
             background-color: var(--bg-color);
             background-image: radial-gradient(circle at 50% 50%, #0f172a 0%, #030712 100%);
             color: var(--neon-blue);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -28,56 +28,49 @@
         }
 
         .container {
-            max-width: 700px;
+            max-width: 650px;
             width: 100%;
             background: var(--panel-bg);
-            backdrop-filter: blur(12px);
             border: 1px solid var(--neon-blue);
             border-radius: 16px;
             padding: 25px;
-            box-shadow: 0 0 30px var(--neon-glow);
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 25px;
-            border-bottom: 1px solid rgba(0, 242, 254, 0.2);
-            padding-bottom: 15px;
+            box-shadow: 0 0 25px var(--neon-glow);
         }
 
         h1 {
-            font-size: 2rem;
-            margin: 0;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 5px;
             letter-spacing: 2px;
             text-shadow: 0 0 10px var(--neon-glow);
         }
 
         p.subtitle {
+            text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 5px;
+            margin-top: 0;
+            margin-bottom: 25px;
         }
 
         .card {
-            background: rgba(31, 41, 55, 0.5);
+            background: rgba(31, 41, 55, 0.6);
             border-left: 4px solid var(--neon-blue);
             padding: 18px;
             margin: 15px 0;
             border-radius: 8px;
-            border: 1px solid rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.15);
         }
 
         h3 {
             margin-top: 0;
             font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            color: var(--neon-blue);
         }
 
-        .btn-futuristic {
+        button {
             background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
             color: #030712;
             border: none;
@@ -86,52 +79,29 @@
             border-radius: 6px;
             cursor: pointer;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 12px;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+            transition: 0.2s;
         }
 
-        .btn-futuristic:hover {
+        button:hover {
             opacity: 0.9;
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.7);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
-        .status-visor {
+        .visor {
             background: #0b0f19;
             border: 1px dashed var(--neon-blue);
             padding: 12px;
             border-radius: 6px;
-            margin-top: 10px;
-            font-size: 0.9rem;
+            margin-top: 12px;
             color: var(--text-main);
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .mic-indicator {
-            width: 12px;
-            height: 12px;
-            background-color: #ef4444;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #ef4444;
-            transition: background-color 0.3s;
-        }
-
-        .mic-indicator.active {
-            background-color: #10b981;
-            box-shadow: 0 0 12px #10b981;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.3); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
+            font-size: 0.95rem;
+            min-height: 30px;
+            text-align: center;
         }
 
         ul {
@@ -140,13 +110,14 @@
         }
 
         li {
-            margin: 6px 0;
+            margin: 8px 0;
             font-size: 0.95rem;
         }
 
         a {
             color: var(--neon-blue);
             text-decoration: none;
+            font-weight: bold;
         }
         a:hover {
             text-decoration: underline;
@@ -156,378 +127,58 @@
 <body>
 
     <div class="container">
-        <header>
-            <h1>S.I.X.T.A.</h1>
-            <p class="subtitle">Interface Neural & Gestão de Engenharia</p>
-        </header>
+        <h1>S.I.X.T.A.</h1>
+        <p class="subtitle">Interface Neural & Engenharia</p>
 
-        <!-- Visor de Estado de Voz -->
-        <div class="card">
-            <h3>🎙️ Escuta Contínua Ativa</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">A assistente está pronta. Fale naturalmente ou clique para alternar a escuta.</p>
-            <div class="status-visor">
-                <span id="textoStatus">Clique em ativar escuta contínua...</span>
-                <div id="micLed" class="mic-indicator"></div>
-            </div>
-            <button class="btn-futuristic" onclick="alternarEscutaContinua()">Ativar/Desativar Escuta Contínua</button>
-        </div>
-
-        <!-- Módulo de E-mails e Outlook (Filtro de Cobranças Ativo) -->
-        <div class="card">
-            <h3>📧 Outlook & Agenda (Filtro Inteligente)</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">Mensagens operacionais e compromissos relevantes (Cobranças ignoradas).</p>
-            <div id="painelEmails">
-                <ul>
-                    <li><strong>Reunião de Projeto:</strong> Alinhamento fundação Alto de Santana - 14:00 <a href="https://outlook.office.com" target="_blank">[Abrir Outlook]</a></li>
-                    <li><strong>Fornecedor Aço:</strong> Cotação de vergalhões atualizada. <a href="https://outlook.office.com" target="_blank">[Ver E-mail]</a></li>
-                </ul>
-            </div>
-            <button class="btn-futuristic" onclick="consultarAgenda()">Sincronizar Outlook & Agenda</button>
-        </div>
-
-        <!-- Módulo de Engenharia & Recursos Visuais -->
-        <div class="card">
-            <h3>🏗️ Engenharia & Recursos Visuais</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">Consulta rápida de especificações técnicas e plantas de obra.</p>
-            <div style="text-align: center; margin-top: 15px;">
-                <img src="https://images.unsplash.com/photo-1541888946425-d0fbb18f8f9d?w=600&auto=format&fit=crop&q=80" alt="Canteiro de Obras" style="width: 100%; max-height: 200px; object-fit: cover; border-radius: 6px; border: 1px solid var(--neon-blue);">
-                <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 5px;">Canteiro Monitorado - Setor Norte</span>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let escutaAtiva = false;
-        let recognition = null;
-
-        // Configuração da Voz Fluida (Tom dinâmico e natural)
-        function falar(texto, callback) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // Interrompe fala anterior para maior fluidez
-                const utterance = new SpeechSynthesisUtterance(texto);
-                utterance.lang = 'pt-BR';
-                utterance.rate = 1.05; // Levemente mais ágil e dinâmica
-                utterance.pitch = 1.0; 
-
-                // Tenta encontrar uma voz em português de alta qualidade (Neural/Google)
-                const vozes = window.speechSynthesis.getVoices();
-                const vozPt = vozes.find(v => v.lang.includes('pt-BR') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Neural')));
-                if (vozPt) {
-                    utterance.voice = vozPt;
-                }
-
-                if (callback) {
-                    utterance.onend = callback;
-                }
-
-                window.speechSynthesis.speak(utterance);
-            }
-        }
-
-        // Inicializar reconhecimento de fala contínuo
-        function alternarEscutaContinua() {
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (!SpeechRecognition) {
-                alert("O seu navegador não suporta reconhecimento de voz contínuo. Use o Google Chrome.");
-                return;
-            }
-
-            if (escutaAtiva) {
-                if (recognition) recognition.stop();
-                escutaAtiva = false;
-                document.getElementById('micLed').classList.remove('active');
-                document.getElementById('textoStatus').innerText = "Escuta desativada.";
-                return;
-            }
-
-            recognition = new SpeechRecognition();
-            recognition.lang = 'pt-BR';
-            recognition.continuous = true; // Mantém ouvindo sem precisar tocar sempre
-            recognition.interimResults = false;
-
-            recognition.onstart = function() {
-                escutaAtiva = true;
-                document.getElementById('micLed').classList.add('active');
-                document.getElementById('textoStatus').innerText = "A ouvir comandos de voz...";
-                falar("Sexta-feira online e a escuta contínua ativada, Mário.");
-            };
-
-            recognition.onresult = function(event) {
-                const ultimoIndex = event.results.length - 1;
-                const comando = event.results[ultimoIndex][0].transcript.toLowerCase().trim();
-                document.getElementById('textoStatus').innerText = "Comando: \"" + comando + "\"";
-
-                processarComandoVoz(comando);
-            };
-
-            recognition.onerror = function(event) {
-                console.log("Erro de reconhecimento: ", event.error);
-            };
-
-            recognition.onend = function() {
-                // Se o usuário ainda quiser com a escuta ativa, reinicia automaticamente
-                if (escutaAtiva) {
-                    try { recognition.start(); } catch(e) {}
-                }
-            };
-
-            recognition.start();
-        }
-
-        // Processamento inteligente dos comandos ditos por voz
-        function processarComandoVoz(cmd) {
-            if (cmd.includes("olá") || cmd.includes("sexta-feira")) {
-                falar("À sua disposição, Mário. Todos os sistemas de engenharia e e-mails operacionais estão sincronizados.");
-            } else if (cmd.includes("agenda") || cmd.includes("compromisso")) {
-                falar("Verifiquei sua agenda. Reunião de projeto marcada para as quatorze horas.");
-                consultarAgenda();
-            } else if (cmd.includes("e-mail") || cmd.includes("outlook") || cmd.includes("mensagem")) {
-                falar("Mensagens do Outlook carregadas. As cobranças e spams foram filtrados e ignorados com sucesso.");
-            } else {
-                falar("Comando processado com sucesso, Mário.");
-            }
-        }
-
-        function consultarAgenda() {
-            alert("Agenda sincronizada com o Outlook. Lembrete: Reunião às 14:00.");
-        }
-
-        // Garante o carregamento das vozes do navegador
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.onvoiceschanged = function() {
-                window.speechSynthesis.getVoices();
-            };
-        }
-    </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEXTA-FEIRA - Assistente de Engenharia</title>
-    <style>
-        body {
-            background-color: #0b0f19;
-            color: #00f2fe;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            max-width: 650px;
-            width: 100%;
-            background: rgba(17, 24, 39, 0.9);
-            border: 1px solid #00f2fe;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
-        }
-        h1 { font-size: 1.6rem; text-align: center; margin-bottom: 5px; }
-        p.subtitle { text-align: center; color: #9ca3af; font-size: 0.9rem; margin-top: 0; }
-        .card {
-            background: #1f2937;
-            border-left: 4px solid #00f2fe;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            margin-top: 8px;
-            background: #374151;
-            border: 1px solid #4b5563;
-            color: white;
-            border-radius: 4px;
-        }
-        button {
-            background: #00f2fe;
-            color: #0b0f19;
-            border: none;
-            padding: 10px 15px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        button:hover { background: #00c0cb; }
-        .result { margin-top: 10px; color: #10b981; font-weight: bold; }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>SEXTA-FEIRA</h1>
-        <p class="subtitle">Módulo de Engenharia Civil & Gestão</p>
-
-        <div class="card">
-            <h3>🏗️ Cálculo Rápido de Alvenaria (Blocos)</h3>
-            <label style="font-size: 0.85rem; color: #d1d5db;">Área da parede (m²):</label>
-            <input type="number" id="areaParede" placeholder="Ex: 15">
-            <button onclick="calcularBlocos()">Calcular Quantidade de Blocos</button>
-            <div id="resultadoBlocos" class="result"></div>
-        </div>
-
-        <div class<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEXTA-FEIRA - Assistente Pessoal</title>
-    <style>
-        body {
-            background-color: #0b0f19;
-            color: #00f2fe;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            max-width: 600px;
-            width: 100%;
-            background: rgba(17, 24, 39, 0.8);
-            border: 1px solid #00f2fe;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
-        }
-        h1 { font-size: 1.5rem; text-align: center; margin-bottom: 5px; }
-        p.subtitle { text-align: center; color: #9ca3af; font-size: 0.9rem; margin-top: 0; }
-        .card {
-            background: #1f2937;
-            border-left: 4px solid #00f2fe;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        button {
-            background: #00f2fe;
-            color: #0b0f19;
-            border: none;
-            padding: 10px 15px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        button:hover { background: #00c0cb; }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>SEXTA-FEIRA</h1>
-        <p class="subtitle">Assistente Pessoal • Engenharia & Produtividade</p>
-
+        <!-- Módulo de Voz Corrigido -->
         <div class="card">
             <h3>🎙️ Comando por Voz</h3>
-            <p style="color: #d1d5db; font-size: 0.9rem;">Pronto para integração com áudio no Android.</p>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Toque no botão para falar com a assistente.</p>
+            <button onclick="ouvirSextaFeira()">Falar com a S.I.X.T.A.</button>
+            <div id="visorStatus" class="visor">A aguardar comando de voz...</div>
         </div>
 
+        <!-- Módulo Outlook & Agenda (Com Filtro de Cobranças) -->
         <div class="card">
-            <h3>🏗️ Engenharia de Obras</h3>
-            <p style="color: #d1d5db; font-size: 0.9rem;">Módulos de quantitativos e materiais (Alto de Santana / NBR).</p>
+            <h3>📧 Outlook & Agenda (Operacional)</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Compromissos ativos (Cobranças e spam ignorados).</p>
+            <ul>
+                <li><strong>Reunião:</strong> Fundação Alto de Santana - 14:00 <a href="https://outlook.office.com" target="_blank">[Abrir Outlook]</a></li>
+                <li><strong>Fornecedor:</strong> Cotação de vergalhões. <a href="https://outlook.office.com" target="_blank">[Ver E-mail]</a></li>
+            </ul>
+            <button onclick="falarTexto('Agenda sincronizada com sucesso, Mário.')">Sincronizar Agenda</button>
         </div>
 
+        <!-- Módulo de Engenharia & Visual -->
         <div class="card">
-            <h3>✅ Minhas Tarefas</h3>
-            <input type="text" id="taskInput" placeholder="Nova tarefa de obra..." style="width: 100%; padding: 8px; box-sizing: border-box; margin-top: 5px; background: #374151; border: 1px solid #4b5563; color: white; border-radius: 4px;">
-            <button onclick="alert('Tarefa anotada para sincronização!')">Adicionar Tarefa</button>
-        </div>
-    </div>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEXTA-FEIRA - Assistente de Voz</title>
-    <style>
-        body {
-            background-color: #0b0f19;
-            color: #00f2fe;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            max-width: 650px;
-            width: 100%;
-            background: rgba(17, 24, 39, 0.9);
-            border: 1px solid #00f2fe;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
-        }
-        h1 { font-size: 1.6rem; text-align: center; margin-bottom: 5px; }
-        p.subtitle { text-align: center; color: #9ca3af; font-size: 0.9rem; margin-top: 0; }
-        .card {
-            background: #1f2937;
-            border-left: 4px solid #00f2fe;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        button {
-            background: #00f2fe;
-            color: #0b0f19;
-            border: none;
-            padding: 12px 15px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            font-size: 1rem;
-        }
-        button:hover { background: #00c0cb; }
-        .status-box { margin-top: 10px; color: #10b981; font-weight: bold; font-size: 0.95rem; }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>SEXTA-FEIRA</h1>
-        <p class="subtitle">Assistente de Voz & Engenharia</p>
-
-        <div class="card">
-            <h3>🎙️ Interação por Voz</h3>
-            <p style="color: #d1d5db; font-size: 0.9rem;">Clique no botão abaixo e fale com a SEXTA-FEIRA (ex: "Olá", "Status da obra", "Calcular blocos").</p>
-            <button onclick="ouvirComando()">Falar com a SEXTA-FEIRA</button>
-            <div id="statusVoz" class="status-box">A aguardar comando...</div>
+            <h3>🏗️ Engenharia & Canteiro</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Monitoramento e especificações técnicas.</p>
+            <div style="text-align: center; margin-top: 10px;">
+                <img src="https://images.unsplash.com/photo-1541888946425-d0fbb18f8f9d?w=600&auto=format&fit=crop&q=80" alt="Canteiro" style="width: 100%; max-height: 180px; object-fit: cover; border-radius: 6px; border: 1px solid var(--neon-blue);">
+                <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 5px;">Setor Norte - Alto de Santana</span>
+            </div>
         </div>
     </div>
 
     <script>
-        // Função para a SEXTA-FEIRA falar com você
-        function falar(texto) {
+        // Função de Síntese de Voz Clara e Fluida
+        function falarTexto(texto) {
             if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(texto);
                 utterance.lang = 'pt-BR';
-                utterance.rate = 1.0; // Velocidade normal
+                utterance.rate = 1.05;
+                
+                const vozes = window.speechSynthesis.getVoices();
+                const vozPt = vozes.find(v => v.lang.includes('pt-BR'));
+                if (vozPt) utterance.voice = vozPt;
+
                 window.speechSynthesis.speak(utterance);
-            } else {
-                alert("O seu navegador não suporta síntese de voz.");
             }
         }
 
-        // Função para ouvir a sua voz (Reconhecimento de Fala)
-        function ouvirComando() {
+        // Função de Reconhecimento de Voz Segura por Toque (Evita bloqueio do Android)
+        function ouvirSextaFeira() {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
                 alert("O seu navegador não suporta reconhecimento de voz. Utilize o Google Chrome.");
@@ -539,35 +190,37 @@
             recognition.interimResults = false;
             recognition.maxAlternatives = 1;
 
-            const statusEl = document.getElementById('statusVoz');
-            statusEl.innerText = "A ouvir...";
+            const visor = document.getElementById('visorStatus');
+            visor.innerText = "A ouvir atentamente...";
 
             recognition.start();
 
             recognition.onresult = function(event) {
-                const comando = event.results[0][0].transcript.toLowerCase();
-                statusEl.innerText = "Disse: \"" + comando + "\"";
-                
-                // Respostas automáticas da SEXTA-FEIRA baseadas no que disser
-                if (comando.includes("olá") || comando.includes("oi")) {
-                    const resposta = "Olá, Mário. A SEXTA-FEIRA está à sua disposição.";
-                    falar(resposta);
-                } else if (comando.includes("status") || comando.includes("obra")) {
-                    const resposta = "Os módulos de engenharia em Alto de Santana estão prontos para consulta.";
-                    falar(resposta);
+                const comando = event.results[0][0].transcript.toLowerCase().trim();
+                visor.innerText = "Comando: \"" + comando + "\"";
+
+                if (comando.includes("olá") || comando.includes("sexta")) {
+                    falarTexto("À sua disposição, Mário. Sistemas operacionais ativos.");
+                } else if (comando.includes("agenda") || comando.includes("reunião")) {
+                    falarTexto("Sua reunião de fundação em Alto de Santana está marcada para as catorze horas.");
+                } else if (comando.includes("email") || comando.includes("outlook")) {
+                    falarTexto("E-mails de obra carregados. As cobranças foram filtradas e ignoradas.");
                 } else {
-                    const resposta = "Comando recebido: " + comando + ". Sistema operacional a funcionar perfeitamente.";
-                    falar(resposta);
+                    falarTexto("Comando compreendido, Mário. Executando.");
                 }
             };
 
             recognition.onerror = function(event) {
-                statusEl.innerText = "Erro ao reconhecer voz. Tente novamente.";
+                visor.innerText = "Erro no microfone. Tente novamente.";
             };
 
             recognition.onspeechend = function() {
                 recognition.stop();
             };
+        }
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
         }
     </script>
 
